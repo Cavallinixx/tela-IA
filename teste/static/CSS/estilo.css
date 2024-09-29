@@ -1,0 +1,145 @@
+.telaIA {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: #f5f5f5; /* Cor de fundo neutra */
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: azure; /* Cor da barra de navegação */
+    padding: 10px;
+    z-index: 1000;
+}
+
+.chat-container {
+    position: fixed; /* Alinha o chat de forma fixa no lado direito */
+    top: 0;
+    right: 0;
+    width: 100%; /* Ajuste a largura conforme necessário */
+    height: 93%; /* Altura total da viewport */
+    border-radius: 10px;
+    background-color: #ffffff; /* Cor de fundo do chat */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    margin-top: 56px; /* Ajuste para não sobrepor a barra de navegação */
+}
+
+.chat-header {
+    background-color: #DC143C; /* Vermelho claro */
+    color: #ffffff;
+    padding: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-size: 30px;
+}
+
+.chat-body {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto; /* Permite a rolagem vertical */
+    background-color: #f5f5f5; /* Cor de fundo do corpo do chat */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* Organiza mensagens em coluna */
+    min-height: 0; /* Permite que o contêiner flex não tenha altura mínima */
+}
+
+#chatBox {
+    display: flex;
+    flex-direction: column; /* Para empilhar as mensagens */
+    overflow-y: auto; /* Para rolar se o conteúdo for maior que o contêiner */
+    padding: 10px; /* Adiciona espaçamento */
+    flex-grow: 1; /* Faz com que o chatBox ocupe o espaço restante */
+}
+/* Estilo para a mensagem do usuário */
+.user-message {
+    background-color: #e0f7fa;
+    color: #004d40;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    text-align: right; /* Alinha o texto à direita */
+    font-family: Arial, sans-serif;
+    font-size: 16px; /* Aumenta o tamanho da fonte */
+    width: fit-content;
+    max-width: 50%; /* Largura máxima da mensagem do usuário */
+    align-self: flex-end; /* Alinha à direita */
+    margin-right: 10px;
+}
+
+
+/* Estilo para a resposta do bot */
+.bot-response {
+    background-color: #ffebee;
+    color: #b71c1c;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    text-align: left; /* Mantém o texto alinhado à esquerda */
+    font-family: Arial, sans-serif;
+    font-size: 16px; /* Aumenta o tamanho da fonte */
+    width: fit-content;
+    max-width: 50%; /* Largura máxima da mensagem do bot */
+    align-self: flex-start; /* Alinha à esquerda */
+    margin-left: 10px;
+}
+
+
+.chat-body img {
+    position: absolute; /* Posiciona a imagem no fundo */
+    transform: translate(-50,-50); /* Posiciona a imagem no centro */
+    width: 400px; /* Ajuste o tamanho da imagem conforme necessário */
+    height: 394px; /* Ajuste o tamanho da imagem conforme necessário */
+    opacity: 0.3; /* Ajusta a opacidade para tornar a imagem mais suave */
+    pointer-events:none;
+    z-index: 2; /* Coloca a imagem atrás do conteúdo */
+}
+
+.chat-body > * {
+    position: relative; /* Garante que o conteúdo fique acima da imagem de fundo */
+    z-index: 2;
+}
+
+.chat-footer {
+    display: flex;
+    border-top: 1px solid #ddd;
+    padding: 10px;
+    background-color: #ffffff; /* Cor de fundo do rodapé */
+}
+
+.chat-footer input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.chat-footer button {
+    background-color: #ff0000; /* Vermelho */
+    border: none;
+    color: #ffffff;
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chat-footer button:hover {
+    background-color: #cc0000; /* Vermelho um pouco mais escuro */
+}
+
+.message.user {
+    font-family: Arial;
+    font-size: 12px;
+}
+
+.message.ai {
+    font-family: Arial;
+    font-size: 12px;
+}
