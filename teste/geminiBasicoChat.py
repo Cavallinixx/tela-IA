@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 import google.generativeai as genai
 
 app = Flask(__name__)
+app.secret_key = 'chave_secreta_para_sessao'  # Necessário para usar sessões no Flask
 
 # Configuração do modelo e chave de API
 genai.configure(api_key="AIzaSyCk-u-JNCWlX0-G5omIdhictzVNW8bEZbM")
@@ -23,20 +24,35 @@ model = genai.GenerativeModel(
     safety_settings=safety_settings,
     system_instruction=(
         "Baymax: Assistente Virtual e Sistema de Gestão de Campus\n"
-        # (Continue a descrição do sistema aqui)
     )
 )
 
+
 @app.route('/')
 def home():
-    return render_template('IA.html')
+    # Recupera o histórico da sessão, ou inicializa uma lista vazia
+    chat_history = session.get('chat_history', [])
+    return render_template('IA.html', chat_history=chat_history)
 
-@app.route('/generate', methods=['post'])
+
+@app.route('/generate', methods=['POST'])
 def generate():
     user_input = request.form['user_input']
-    prompt_parts = [user_input]
-    response = model.generate_content(prompt_parts)
-    return render_template('IA.html', user_input=user_input, ai_response=response.text)
+
+    # Gera a resposta da IA
+    response = model.generate_content([user_input])
+
+    # Recupera o histórico da sessão
+    chat_history = session.get('chat_history', [])
+
+    # Adiciona a nova interação (pergunta e resposta)
+    chat_history.append({'user_input': user_input, 'ai_response': response.text})
+
+    # Atualiza o histórico na sessão
+    session['chat_history'] = chat_history
+
+    return render_template('IA.html', chat_history=chat_history)
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)
